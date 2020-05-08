@@ -1,0 +1,7 @@
+﻿@if (ViewData.ModelState != null && ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">
+        <a class="close" data-dismiss="alert">×</a>
+        <div asp-validation-summary="All"></div>
+    </div>
+}

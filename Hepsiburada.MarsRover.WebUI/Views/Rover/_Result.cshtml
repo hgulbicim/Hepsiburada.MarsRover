@@ -1,0 +1,39 @@
+﻿@model Hepsiburada.MarsRover.Entities.Entity.InputModel
+
+@if (ViewData.ModelState.ErrorCount == 0 && Model != null && Model.RoverList != null && Model.RoverList.Count > 0)
+{
+    <h3>Results</h3>
+
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Rover Guid</th>
+                <th>First Position</th>
+                <th>Last Position</th>
+                <th>History</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RoverList)
+            {
+                <tr>
+                    <td>@item.RoverGuid</td>
+                    <td>@(item.RoverPositionHistory == null ? item.RoverPosition.ToString() : item.RoverPositionHistory.FirstOrDefault().ToString())</td>
+                    <td>@item.RoverPosition.ToString()</td>
+                    <td>
+                        @if (item.RoverPositionHistory != null)
+                        {
+                            @string.Join(" | ", item.RoverPositionHistory)
+                            @:|
+                            @item.RoverPosition.ToString()
+                        }
+                        else
+                        {
+                            @:-
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,58 @@
+﻿@model Hepsiburada.MarsRover.Entities.Entity.InputModel
+
+@if (Model != null && Model.RoverList != null)
+{
+    @for (int i = 0; i < Model.RoverList.Count; i++)
+    {
+        <div class="dv-rover">
+            <div class="form-group">
+                <label asp-for="RoverList[i].RoverPosition.X" class="control-label col-sm-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="RoverList[i].RoverPosition.X" class="form-control" min="1" max="100" required />
+                    <span asp-validation-for="RoverList[i].RoverPosition.X"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RoverList[i].RoverPosition.Y" class="control-label col-sm-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="RoverList[i].RoverPosition.Y" class="form-control" min="1" max="100" required />
+                    <span asp-validation-for="RoverList[i].RoverPosition.Y"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RoverList[i].RoverPosition.CurrentDirectionType" class="control-label col-sm-2"></label>
+                <div class="col-sm-3">
+                    <select asp-for="RoverList[i].RoverPosition.CurrentDirectionType" class="form-control" required>
+                        <option value="North">North</option>
+                        <option value="East">East</option>
+                        <option value="South">South</option>
+                        <option value="West">West</option>
+                    </select>
+                    <span asp-validation-for="RoverList[i].RoverPosition.CurrentDirectionType"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RoverList[i].CommandParameters" class="control-label col-sm-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="RoverList[i].CommandParameters" class="form-control" required />
+                    <span asp-validation-for="RoverList[i].CommandParameters"></span>
+                </div>
+                <div class="col-sm-3">
+                    <select name="RoverList[@i].DirectionType" class="form-control">
+                        <option value="M">Move Forward</option>
+                        <option value="L">Rotate Left</option>
+                        <option value="R">Rotate Right</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span><input type="button" value="Add New Command" name="RoverList[@i]" class="btn btn-sm btn-info btn-add-new-command" /></span>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+    }
+}
