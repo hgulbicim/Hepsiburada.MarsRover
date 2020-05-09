@@ -1,6 +1,6 @@
 ﻿using Hepsiburada.MarsRover.Entities.Entity;
 
-namespace Hepsiburada.MarsRover.UnitTest.PoCo
+namespace Hepsiburada.MarsRover.UnitTest.Poco
 {
     public class RoverControllerTestParameter
     {

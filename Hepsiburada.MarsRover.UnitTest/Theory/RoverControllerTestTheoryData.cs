@@ -1,6 +1,6 @@
 ﻿using Hepsiburada.MarsRover.Business.Enum;
 using Hepsiburada.MarsRover.Entities.Entity;
-using Hepsiburada.MarsRover.UnitTest.PoCo;
+using Hepsiburada.MarsRover.UnitTest.Poco;
 using System.Collections.Generic;
 using Xunit;
 

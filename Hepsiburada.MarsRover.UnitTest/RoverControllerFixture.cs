@@ -1,12 +1,8 @@
 ﻿using Hepsiburada.MarsRover.Business.Assembler;
 using Hepsiburada.MarsRover.Business.Interface;
-using Hepsiburada.MarsRover.Entities.Entity;
-using Hepsiburada.MarsRover.UnitTest.PoCo;
-using Hepsiburada.MarsRover.UnitTest.Theory;
 using Hepsiburada.MarsRover.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System.Linq;
 using Xunit;
 
 namespace Hepsiburada.MarsRover.UnitTest
@@ -26,26 +22,17 @@ namespace Hepsiburada.MarsRover.UnitTest
             _plateauService = new Mock<IPlateauService>();
         }
 
-        [Theory, ClassData(typeof(RoverControllerTestTheoryData))]
-        public void RoverPosition_Should_Return_As_Expected(RoverControllerTestParameter parameter)
+        [Fact]
+        public void Input_ActionExecutes_ReturnsViewForInput()
         {
-            //Setup
-            _roverServiceMock.Setup(x => x.TakeAction(parameter.Actual, parameter.Actual.RoverList.FirstOrDefault()));
-
             //Inject
             var roverController = new RoverController(_inputProviderService.Object, _inputModelAssembler.Object, _plateauService.Object, _roverServiceMock.Object);
 
             //Act
-            var result = roverController.Input(parameter.Actual);
+            var result = roverController.Input();
 
             //Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
-
-            var model = Assert.IsAssignableFrom<InputModel>(viewResult.ViewData.Model);
-
-            var expected = parameter.Expected;
-
-            Assert.Equal(expected.RoverList.FirstOrDefault().RoverPosition.ToString(), model.RoverList.FirstOrDefault().RoverPosition.ToString());
+            Assert.IsType<ViewResult>(result);
         }
     }
 }
